@@ -132,6 +132,7 @@ class _StudentSchedulePageState extends State<StudentSchedule> {
   }
 
   void setInitialPage() {
+    // // excuse me what the fucc is this?
     // var m = now.month < 10 ? "0${now.month}" : "${now.month}";
     // var currentDateString = "${now.day}-${m}-${now.year}";
     // var currentDate = DateFormat("dd-MM-yyyy").parse(currentDateString);
