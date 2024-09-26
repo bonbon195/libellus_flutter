@@ -18,11 +18,11 @@ class Lesson {
       list.map((e) => Lesson.fromDynamicMap(e)).toList();
 
   factory Lesson.fromDynamicMap(Map<String, dynamic> json) => Lesson(
-        name: json["name"] ?? '',
-        teacher: json["teacher"] ?? '',
-        classroom: json["classroom"] ?? '',
-        time: json["time"] ?? '',
-        subgroup: json["subgroup"] ?? 0,
-        height: json["height"] ?? 1,
+        name: json.containsKey("name") ? json["name"] ?? '' : '',
+        teacher: json.containsKey("teacher") ? json["teacher"] ?? '' : '',
+        classroom: json.containsKey("classroom") ? json["classroom"] ?? '' : '',
+        time: json.containsKey("time") ? json["time"] ?? '' : '',
+        subgroup: json.containsKey("subgroup") ? json["subgroup"] ?? 0 : 0,
+        height: json.containsKey("height") ? json["height"] ?? 1 : 1,
       );
 }

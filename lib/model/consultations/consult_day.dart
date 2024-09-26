@@ -14,9 +14,9 @@ class ConsultDay {
       list.map((e) => ConsultDay.fromDynamicMap(e)).toList();
 
   factory ConsultDay.fromDynamicMap(Map<String, dynamic> json) => ConsultDay(
-        name: json["name"] ?? '',
-        date: json["date"] ?? '',
-        time: json["time"] ?? '',
-        classroom: json["classroom"] ?? '',
+        name: json.containsKey("name") ? json["name"] ?? '' : '',
+        date: json.containsKey("date") ? json["date"] ?? '' : '',
+        classroom: json.containsKey("classroom") ? json["classroom"] ?? '' : '',
+        time: json.containsKey("time") ? json["time"] ?? '' : '',
       );
 }

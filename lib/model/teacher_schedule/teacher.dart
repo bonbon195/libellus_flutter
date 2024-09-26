@@ -12,9 +12,11 @@ class Teacher implements Comparable<Teacher> {
 
   factory Teacher.fromDynamicMap(Map<String, dynamic> json) => Teacher(
       name: json["name"] ?? '',
-      week: json["week"] == null
-          ? List<TeacherDay>.empty()
-          : TeacherDay.toTypedList(json["week"]));
+      week: json.containsKey("week")
+          ? json["week"] == null
+              ? List.empty()
+              : TeacherDay.toTypedList(json["week"])
+          : List.empty());
 
   @override
   int compareTo(Teacher other) {

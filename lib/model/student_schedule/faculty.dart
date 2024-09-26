@@ -11,7 +11,9 @@ class Faculty {
 
   factory Faculty.fromDynamicMap(Map<String, dynamic> json) => Faculty(
       code: json["code"] ?? '',
-      groups: json["groups"] == null
-          ? List.empty()
-          : Group.toTypedList(json["groups"]));
+      groups: json.containsKey("groups")
+          ? json["groups"] == null
+              ? List.empty()
+              : Group.toTypedList(json["groups"])
+          : List.empty());
 }

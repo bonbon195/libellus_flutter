@@ -14,9 +14,11 @@ class ConsultTeacher implements Comparable<ConsultTeacher> {
   factory ConsultTeacher.fromDynamicMap(Map<String, dynamic> json) =>
       ConsultTeacher(
           name: json["name"] ?? '',
-          week: json["week"] == null
-              ? List<ConsultDay>.empty()
-              : ConsultDay.toTypedList(json["week"]));
+          week: json.containsKey("week")
+              ? json["week"] == null
+                  ? List.empty()
+                  : ConsultDay.toTypedList(json["week"])
+              : List.empty());
 
   @override
   int compareTo(ConsultTeacher other) {

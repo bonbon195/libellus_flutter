@@ -10,7 +10,10 @@ class Group {
       list.map((e) => Group.fromDynamicMap(e)).toList();
 
   factory Group.fromDynamicMap(Map<String, dynamic> json) => Group(
-      name: json["name"] ?? '',
-      days:
-          json["days"] == null ? List.empty() : Day.toTypedList(json["days"]));
+      name: json.containsKey("name") ? json["name"] ?? '' : '',
+      days: json.containsKey("days")
+          ? json["days"] == null
+              ? List.empty()
+              : Day.toTypedList(json["days"])
+          : List.empty());
 }

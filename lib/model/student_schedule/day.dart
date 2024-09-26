@@ -11,9 +11,11 @@ class Day {
       list.map((e) => Day.fromDynamicMap(e)).toList();
 
   factory Day.fromDynamicMap(Map<String, dynamic> json) => Day(
-      name: json["name"] ?? '',
-      date: json["date"] ?? '',
-      lessons: json["lessons"] == null
-          ? List<Lesson>.empty()
-          : Lesson.toTypedList(json["lessons"]));
+      name: json.containsKey("name") ? json["name"] ?? '' : '',
+      date: json.containsKey("date") ? json["date"] ?? '' : '',
+      lessons: json.containsKey("lessons")
+          ? json["lessons"] == null
+              ? List.empty()
+              : Lesson.toTypedList(json["lessons"])
+          : List.empty());
 }
