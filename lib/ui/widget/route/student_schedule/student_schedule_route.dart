@@ -128,13 +128,16 @@ class _StudentSchedulePageState extends State<StudentSchedule> {
   }
 
   void setInitialPage() {
-    var dayIndex = _schedule!.days.lastIndexWhere((element) {
+    if (_schedule?.days == null) {
+      return;
+    }
+    var dayIndex = _schedule!.days.indexWhere((element) {
       if (element.date.isEmpty) {
         return false;
       }
       var date = DateFormat("dd.MM.yyy").parse(element.date).toLocal();
       var diff = now.difference(date).inHours;
-      debugPrint(diff.toString() + " " + element.name.toString());
+      debugPrint("$diff ${element.name}");
       return diff < 0 && diff > -24;
     });
     if (dayIndex < 0) {
