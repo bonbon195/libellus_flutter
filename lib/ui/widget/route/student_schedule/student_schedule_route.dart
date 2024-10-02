@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:libellus/model/student_schedule/group.dart';
 import 'package:libellus/preferences/user_preferences.dart';
 import 'package:libellus/repo/libellus_server_repo.dart';
@@ -124,31 +125,22 @@ class _StudentSchedulePageState extends State<StudentSchedule> {
     _pageName = _schedule == null
         ? ''
         : "${_schedule!.days.elementAt(currentPage).date} ${_schedule!.days.elementAt(currentPage).name}";
-    print(
-        "${_schedule!.days.elementAt(currentPage).date} ${_schedule!.days.elementAt(currentPage).name}");
   }
 
   void setInitialPage() {
-    // // excuse me what the fucc is this?
-    // var m = now.month < 10 ? "0${now.month}" : "${now.month}";
-    // var currentDateString = "${now.day}-${m}-${now.year}";
-    // var currentDate = DateFormat("dd-MM-yyyy").parse(currentDateString);
-    // var dates = _schedule!.days.toList();
-    // var difference =
-    //     calculateDifference(DateFormat("dd-MM-yyyy").parse(dates.last.date));
-    initialPage = 0;
-    //TODO
-    // if (_schedule!.containsKey(currentDateString)) {
-    //   initialPage = dates.indexOf(currentDateString);
-    // } else if (difference <= 3 && difference >= 0 || difference == 0) {
-    //   initialPage = dates.length - 1;
-    // } else if (currentDate.weekday == 7 &&
-    //     difference >= 0 &&
-    //     dates.indexOf(currentDateString) != dates.length - 1) {
-    //   initialPage = dates.indexOf(currentDateString) + 1;
-    // } else {
-    //   initialPage = 0;
-    // }
+    var dayIndex = _schedule!.days.lastIndexWhere((element) {
+      if (element.date.isEmpty) {
+        return false;
+      }
+      var date = DateFormat("dd.MM.yyy").parse(element.date).toLocal();
+      var diff = now.difference(date).inHours;
+      debugPrint(diff.toString() + " " + element.name.toString());
+      return diff < 0 && diff > -24;
+    });
+    if (dayIndex < 0) {
+      return;
+    }
+    initialPage = dayIndex;
   }
 
   setGroupAndFaculty() {
