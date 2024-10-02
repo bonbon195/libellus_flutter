@@ -41,12 +41,6 @@ class _StudentSchedulePageState extends State<StudentSchedule> {
           MaterialPageRoute(builder: (context) => const LoginScreen()));
     }
     widget.setTitle(group);
-    _pageController.addListener(() {
-      setState(() {
-        currentPage = _pageController.page!.toInt();
-        _updatePageName();
-      });
-    });
     super.initState();
   }
 
@@ -65,6 +59,7 @@ class _StudentSchedulePageState extends State<StudentSchedule> {
             : const EdgeInsets.all(0),
         bottom: true,
         child: Scaffold(
+            backgroundColor: const Color.fromARGB(255, 245, 245, 245),
             body: Container(
               padding: const EdgeInsets.all(12),
               alignment: Alignment.center,
@@ -129,6 +124,8 @@ class _StudentSchedulePageState extends State<StudentSchedule> {
     _pageName = _schedule == null
         ? ''
         : "${_schedule!.days.elementAt(currentPage).date} ${_schedule!.days.elementAt(currentPage).name}";
+    print(
+        "${_schedule!.days.elementAt(currentPage).date} ${_schedule!.days.elementAt(currentPage).name}");
   }
 
   void setInitialPage() {

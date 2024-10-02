@@ -15,6 +15,7 @@ class LessonWidget extends StatelessWidget {
                 child: SizedBox.fromSize(
                     size: const Size.fromWidth(400),
                     child: Card(
+                      color: Colors.white,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
@@ -22,20 +23,24 @@ class LessonWidget extends StatelessWidget {
                             children: [
                               Row(
                                 children: [
-                                  Text(
-                                    lesson.name.replaceAll("\n", ""),
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      lesson.name.replaceAll("\n", ""),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  )
                                 ],
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    "${lesson.teacher.replaceAll("\n", "")} ${lesson.classroom}",
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
+                                  Expanded(
+                                    child: Text(
+                                      "${lesson.teacher.replaceAll("\n", "")} ${lesson.classroom}",
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
                                   ),
                                 ],
                               ),

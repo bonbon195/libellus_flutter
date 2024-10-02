@@ -51,40 +51,44 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-            drawer:
-                NavigationDrawer(onDestinationSelected: (value) {}, children: [
-              ListTile(
-                title: const Text("Расписание"),
-                onTap: () {
-                  _onItemTapped(0);
-                },
-              ),
-              ListTile(
-                title: const Text("Настройки"),
-                onTap: () {
-                  _onItemTapped(1);
-                },
-              ),
-              ListTile(
-                title: const Text("Консультации"),
-                onTap: () {
-                  _onItemTapped(2);
-                },
-              ),
-              ListTile(
-                title: const Text("Преподаватели"),
-                onTap: () {
-                  _onItemTapped(3);
-                },
-              ),
-              ListTile(
-                title: Text(
-                  "Последнее обновление:\n$_updateDate",
-                ),
-                enabled: false,
-              )
-            ]),
+            drawer: NavigationDrawer(
+                onDestinationSelected: (value) {},
+                backgroundColor: Colors.white,
+                children: [
+                  ListTile(
+                    title: const Text("Расписание"),
+                    onTap: () {
+                      _onItemTapped(0);
+                    },
+                  ),
+                  ListTile(
+                    title: const Text("Настройки"),
+                    onTap: () {
+                      _onItemTapped(1);
+                    },
+                  ),
+                  ListTile(
+                    title: const Text("Консультации"),
+                    onTap: () {
+                      _onItemTapped(2);
+                    },
+                  ),
+                  ListTile(
+                    title: const Text("Преподаватели"),
+                    onTap: () {
+                      _onItemTapped(3);
+                    },
+                  ),
+                  ListTile(
+                    title: Text(
+                      "Последнее обновление:\n$_updateDate",
+                    ),
+                    enabled: false,
+                  )
+                ]),
             appBar: AppBar(
+              backgroundColor: Colors.blue,
+              foregroundColor: Colors.white,
               title: Text(title),
             ),
             body: _routes[_selectedIndex]));

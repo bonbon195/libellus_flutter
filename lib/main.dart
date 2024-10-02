@@ -19,6 +19,12 @@ class App extends StatelessWidget {
       // UserPreferences.setGroupAndFaculty('', '');
     }
     return MaterialApp(
+      theme: ThemeData.from(
+          colorScheme: const ColorScheme.light(
+        primary: Colors.blue,
+        background: Colors.white,
+        surface: Colors.white,
+      )),
       onGenerateRoute: (settings) {
         if (UserPreferences.getFaculty() != '') {
           return MaterialPageRoute(builder: (_) => const HomeScreen());
